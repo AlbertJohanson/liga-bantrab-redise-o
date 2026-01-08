@@ -1,0 +1,119 @@
+---
+import matches from '../data/matches.json'
+import PreviewMatchCard from './PreviewMatchCard.astro'
+---
+
+<section class="results-section">
+    <div class="results-container">
+        <div class="section-header">
+            <span class="section-label">Jornada 1 • Clausura 2026</span>
+            <h2 class="section-title">PRÓXIMOS PARTIDOS</h2>
+        </div>
+
+        <div class="placeholder-header">
+            <div class="placeholder-header-icon">📅</div>
+            <h3 class="placeholder-header-title">¡La espera casi termina!</h3>
+            <p class="placeholder-header-text">
+                Los resultados estarán disponibles a partir del <strong>21 de Enero</strong>
+            </p>
+        </div>
+
+        <div class="matches-preview-grid">
+             {
+                matches.map((match) => (
+                    <PreviewMatchCard 
+                        homeTeam={match.homeTeam}
+                        awayTeam={match.awayTeam}
+                        date={match.date}
+                        time={match.time}
+                        venue={match.venue}
+                        venueImage={match.venueImage}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .results-section {
+        background: linear-gradient(135deg, var(--negro) 0%, var(--negro-suave) 100%);
+        padding: 4rem 2rem;
+        border-radius: 24px;
+    }
+
+    .results-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-label {
+        font-size: 0.85rem;
+        color: var(--turquesa);
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    .section-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+        color: var(--blanco);
+    }
+
+    .placeholder-header {
+        background: linear-gradient(135deg, var(--turquesa-profundo), var(--turquesa-oscuro));
+        border-radius: 20px;
+        padding: 2rem;  
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .placeholder-header-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .placeholder-header-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.8rem;
+        color: var(--blanco);
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+    }
+
+    .placeholder-header-text {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+    }
+
+    .placeholder-header-text strong {
+        color: var(--blanco);
+    }
+
+    .matches-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    @media (max-width: 992px) {
+        .matches-preview-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .matches-preview-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

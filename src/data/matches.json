@@ -1,0 +1,110 @@
+[
+    {
+        "id": 1,
+        "homeTeam": {
+            "name": "Xelajú M.C.",
+            "shortName": "XEL",
+            "logo": "/images/logos/Xelaju.png"
+        },
+        "awayTeam": {
+            "name": "Aurora F.C.",
+            "shortName": "AUR",
+            "logo": "/images/logos/Aurora.png"
+        },
+        "date": "Miércoles, 21 Enero",
+        "time": "Por definir",
+        "venue": "Estadio Mario Camposeco",
+        "venueImage": "/images/stadiums/mario-camposeco.jpg",
+        "isClassic": false
+    },
+    {
+        "id": 2,
+        "homeTeam": {
+            "name": "Malacateco",
+            "shortName": "MAL",
+            "logo": "/images/logos/Malacateco.png"
+        },
+        "awayTeam": {
+            "name": "Marquense",
+            "shortName": "MAR",
+            "logo": "/images/logos/Marquense.png"
+        },
+        "date": "Miércoles, 21 Enero",
+        "time": "Por definir",
+        "venue": "Estadio Santa Lucía",
+        "venueImage": "/images/stadiums/santa-lucia.jpg",
+        "isClassic": false
+    },
+    {
+        "id": 3,
+        "homeTeam": {
+            "name": "Guastatoya",
+            "shortName": "GUA",
+            "logo": "/images/logos/Guastatoya.png"
+        },
+        "awayTeam": {
+            "name": "Mixco",
+            "shortName": "MIX",
+            "logo": "/images/logos/Mixco.png"
+        },
+        "date": "Miércoles, 21 Enero",
+        "time": "Por definir",
+        "venue": "Estadio David Cordón",
+        "venueImage": "/images/stadiums/david-cordon.jpeg",
+        "isClassic": false
+    },
+    {
+        "id": 4,
+        "homeTeam": {
+            "name": "Municipal",
+            "shortName": "MUN",
+            "logo": "/images/logos/Municipal.png"
+        },
+        "awayTeam": {
+            "name": "Mictlán",
+            "shortName": "MIC",
+            "logo": "/images/logos/Mictlan.png"
+        },
+        "date": "Jueves, 22 Enero",
+        "time": "Por definir",
+        "venue": "Estadio El Trébol",
+        "venueImage": "/images/stadiums/el-trebol.jpg" ,
+        "isClassic": false
+    },
+    {
+        "id": 5,
+        "homeTeam": {
+            "name": "Cobán Imperial",
+            "shortName": "COB",
+            "logo": "/images/logos/Coban.png"
+        },
+        "awayTeam": {
+            "name": "Antigua G.F.C.",
+            "shortName": "ANT",
+            "logo": "/images/logos/Antigua.png"
+        },
+        "date": "Jueves, 22 Enero",
+        "time": "Por definir",
+        "venue": "Estadio Verapaz",
+        "venueImage": "/images/stadiums/verapaz.jpg",
+        "isClassic": false
+    },
+    {
+        "id": 6,
+        "homeTeam": {
+            "name": "Achuapa F.C.",
+            "shortName": "ACH",
+            "logo": "/images/logos/Achuapa.png"
+        },
+        "awayTeam": {
+            "name": "Comunicaciones",
+            "shortName": "COM",
+            "logo": "/images/logos/Comunicaciones.png"
+        },
+        "date": "Jueves, 22 Enero",
+        "time": "Por definir",
+        "venue": "Estadio El Condor",
+        "venueImage": "/images/stadiums/el-condor.jpg" ,
+        "isClassic": false
+    }
+]

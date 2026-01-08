@@ -1,0 +1,175 @@
+---
+import equipos from '../data/equipos.json'
+---
+
+<section class="teams-section">
+    <div class="teams-container">
+        <div class="section-header">
+            <span class="teams-label">TEMPORADA 2025-26</span>
+            <h2 class="teams-title">EQUIPOS DE LA LIGA</h2>
+        </div>
+
+        <div class="teams-slogan">LA LIGA <span>NOS UNE</span></div>
+
+        <div class="teams-grid">
+               {
+                    equipos.map((equipo, index) => (
+                       <div class="team-card">
+                            <div class={`team-card-logo ${equipo.shortName}`}>
+                                <img src={equipo.logo} width="100%" height="100%"/>
+                            </div>
+                            <div class="team-card-name">{equipo.name}</div>
+                        <div class="team-card-city">{equipo.city}</div>
+                </div>
+                    ))
+                }
+        </div>
+    </div>
+</section>
+
+<style>
+    .teams-section {
+        background: linear-gradient(180deg, var(--turquesa), var(--turquesa-oscuro));
+        padding: 5rem 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .teams-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .teams-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .teams-section .teams-label {
+        color: var(--blanco);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .section-header {
+        text-align: center;
+    }
+
+    .teams-title {
+        color: var(--blanco);
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        letter-spacing: 2px;
+    }
+
+    .teams-slogan {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--blanco);
+    }
+
+    .teams-slogan span {
+        background: var(--negro);
+        padding: 0 0.5rem;
+        transform: skewX(-5deg);
+        display: inline-block;
+    }
+
+    .teams-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.5rem;
+    }
+
+    .team-card {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 2rem 1rem;
+        text-align: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+    }
+
+    .team-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--blanco);
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .team-card-logo {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1rem;
+        border-radius: 50%;
+        background: var(--blanco);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.2rem;
+        color: var(--turquesa-profundo);
+        border: 3px solid rgba(255, 255, 255, 0.5);
+        transition: border-color 0.3s ease;
+    }
+
+    .team-card:hover .team-card-logo {
+        border-color: var(--negro);
+    }
+
+    .team-card-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--blanco);
+        margin-bottom: 0.25rem;
+    }
+
+    .team-card-city {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .team-card-logo.MUN { background: linear-gradient(135deg, #c00, #800); color: #fff; }
+    .team-card-logo.COM { background: #fff; color: #000; }
+    .team-card-logo.ANT { background: linear-gradient(135deg, #2d5016, #1a3009); color: #fff; }
+    .team-card-logo.XEL { background: linear-gradient(135deg, #c00, #600); color: #fff; }
+    .team-card-logo.GUA { background: linear-gradient(135deg, #FFD700, #C5A000); color: #000; }
+    .team-card-logo.COB { background: linear-gradient(135deg, #1a237e, #0d1654); color: #fff; }
+    .team-card-logo.MAL { background: linear-gradient(135deg, #1a1a1a, #333); color: #fff; }
+    .team-card-logo.ACH { background: linear-gradient(135deg, #006600, #009900); color: #fff; }
+    .team-card-logo.MAR { background: linear-gradient(135deg, #333366, #4444aa); color: #fff; }
+    .team-card-logo.AUR { background: linear-gradient(135deg, #1a237e, #0d47a1); color: #fff; }
+    .team-card-logo.MIX { background: linear-gradient(135deg, #4a148c, #7b1fa2); color: #fff; }
+    .team-card-logo.MIC { background: linear-gradient(135deg, #004d40, #00796b); color: #fff; }
+
+    @media (max-width: 1200px) {
+        .teams-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media (max-width: 992px) {
+        .teams-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .teams-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>

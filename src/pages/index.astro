@@ -1,16 +1,14 @@
 ---
-
+import MainLayout from '../layouts/MainLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import StandingPlaceHolder from '../components/StandingPlaceHolder.astro';
+import ResultsPlaceHolder from '../components/ResultsPlaceHolder.astro';
+import Teams from '../components/Teams.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Inicio">
+    <HeroSection />
+    <StandingPlaceHolder startDate='21 de Enero del 2026' tournamentName='Torneo Clausura 2026'/>
+    <ResultsPlaceHolder />
+    <Teams />
+</MainLayout>

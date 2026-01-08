@@ -1,0 +1,288 @@
+---
+import equipos from '../data/equipos.json'
+
+interface Props {
+    startDate?: string;
+    tournamentName?: string
+}
+
+const { startDate, tournamentName } = Astro.props;
+
+---
+
+<section class="standings-section">
+        <div class="standings-container">
+            <div class="section-header">
+                <span class="section-label">{tournamentName}</span>
+                <h2 class="section-title">TABLA DE POSICIONES</h2>
+            </div>
+
+            <div class="placeholder-wrapper">
+                <!-- Card principal - Tabla -->
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">🏆</div>
+                    <h3 class="placeholder-title">¡El torneo está por comenzar!</h3>
+                    <p class="placeholder-text">
+                        La tabla de posiciones estará disponible una vez inicie el 
+                        <strong>{tournamentName}</strong>
+                    </p>
+                    <div class="placeholder-date">
+                        <span class="date-label">Fecha de inicio</span>
+                        <span class="date-value">{startDate}</span>
+                    </div>
+                    <div class="placeholder-teams">
+                        <span>12 equipos competirán por el título</span>
+                        <div class="teams-preview">
+                            {
+                                equipos.map((equipo, index) => (
+                                    <div class={`team-dot ${equipo.shortName}`}>
+                                        <img src={equipo.logo} width="100%" height="100%"/>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card secundaria - Goleadores -->
+                <div class="placeholder-card scorers">
+                    <div class="placeholder-icon">⚽</div>
+                    <h3 class="placeholder-title">Goleadores</h3>
+                    <p class="placeholder-text">
+                        ¿Quién será el máximo artillero del torneo?
+                    </p>
+                    <div class="placeholder-podium">
+                        <div class="podium-item second">
+                            <div class="podium-icon">🥈</div>
+                            <div class="podium-bar"></div>
+                        </div>
+                        <div class="podium-item first">
+                            <div class="podium-icon">🥇</div>
+                            <div class="podium-bar"></div>
+                        </div>
+                        <div class="podium-item third">
+                            <div class="podium-icon">🥉</div>
+                            <div class="podium-bar"></div>
+                        </div>
+                    </div>
+                    <span class="placeholder-soon">Próximamente</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<style>
+    .standings-section {
+        background: var(--gris-claro);
+        padding: 3rem 2rem;
+    }
+
+    .standings-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-label {
+        font-size: 0.85rem;
+        color: var(--turquesa);
+        font-weight: 600;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    .section-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+        color: var(--turquesa-profundo);
+    }
+
+    .placeholder-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+
+    .placeholder-card {
+        background: var(--blanco);
+        border-radius: 24px;
+        padding: 3rem 2rem;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .placeholder-icon {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .placeholder-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2rem;
+        color: var(--turquesa-profundo);
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .placeholder-text {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 400px;
+        margin-bottom: 2rem;
+    }
+
+    .placeholder-text strong {
+        color: var(--turquesa-profundo);
+    }
+
+    .placeholder-date {
+        background: linear-gradient(135deg, var(--turquesa), var(--turquesa-oscuro));
+        padding: 1.25rem 2.5rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+    }
+
+    .date-label {
+        display: block;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.25rem;
+    }
+
+    .date-value {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.6rem;
+        color: var(--blanco);
+        letter-spacing: 1px;
+    }
+
+    .placeholder-teams {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 0.9rem;
+    }
+
+    .teams-preview {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .team-dot {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .team-dot:hover {
+        transform: scale(1.2);
+    }
+
+    .team-dot.MUN { background: linear-gradient(135deg, #c00, #800); }
+    .team-dot.COM { background: #fff; border: 2px solid #ddd; }
+    .team-dot.ANT { background: linear-gradient(135deg, #2d5016, #1a3009); }
+    .team-dot.XEL { background: linear-gradient(135deg, #c00, #600); }
+    .team-dot.GUA { background: linear-gradient(135deg, #FFD700, #C5A000); }
+    .team-dot.COB { background: linear-gradient(135deg, #1a237e, #0d1654); }
+    .team-dot.MAL { background: linear-gradient(135deg, #1a1a1a, #333); }
+    .team-dot.AUR { background: linear-gradient(135deg, #1a237e, #0d47a1); }
+    .team-dot.MIX { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+    .team-dot.MIC { background: linear-gradient(135deg, #004d40, #00796b); }
+    .team-dot.MAR { background: linear-gradient(135deg, #333366, #4444aa); }
+    .team-dot.ACH { background: linear-gradient(135deg, #006600, #009900); }
+
+    /* Scorers placeholder */
+    .placeholder-card.scorers {
+        background: linear-gradient(135deg, var(--turquesa-profundo), var(--turquesa-oscuro));
+    }
+
+    .placeholder-card.scorers .placeholder-icon {
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+
+    .placeholder-card.scorers .placeholder-title {
+        color: var(--blanco);
+    }
+
+    .placeholder-card.scorers .placeholder-text {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .placeholder-podium {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+    }
+
+    .podium-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .podium-icon {
+        font-size: 1.8rem;
+    }
+
+    .podium-bar {
+        width: 55px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px 8px 0 0;
+    }
+
+    .podium-item.first .podium-bar {
+        height: 90px;
+        background: linear-gradient(180deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+    }
+
+    .podium-item.second .podium-bar {
+        height: 65px;
+        background: linear-gradient(180deg, rgba(192, 192, 192, 0.4), rgba(192, 192, 192, 0.2));
+    }
+
+    .podium-item.third .podium-bar {
+        height: 45px;
+        background: linear-gradient(180deg, rgba(205, 127, 50, 0.4), rgba(205, 127, 50, 0.2));
+    }
+
+    .placeholder-soon {
+        color: var(--negro);
+        font-weight: 600;
+        font-size: 0.9rem;
+        background: var(--blanco);
+        padding: 0.6rem 1.75rem;
+        border-radius: 25px;
+        margin-top: 0.5rem;
+    }
+
+    @media (max-width: 992px) {
+        .placeholder-wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

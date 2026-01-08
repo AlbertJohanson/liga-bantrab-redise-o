@@ -1,0 +1,149 @@
+---
+interface Team {
+    name: string;
+    shortName: string;
+    logo: string;
+}
+
+interface Props {
+    homeTeam: Team;
+    awayTeam: Team;
+    date: string;
+    time: string;
+    venue: string;
+}
+
+const {homeTeam, awayTeam, date, time, venue} = Astro.props;
+---
+
+<div class="match-card">
+    <div class="match-card-date">{date} • {time}</div>
+    <div class="match-card-teams">
+        <div class="match-team">
+            <div class={`match-team-logo ${homeTeam.shortName}`}>
+                <img src={homeTeam.logo} width="100%" height="100%"/>
+            </div>
+            <span>{homeTeam.name}</span>
+        </div>
+        <div class="match-score">VS</div>
+        <div class="match-team">
+            <div class={`match-team-logo ${awayTeam.shortName}`}>
+                <img src={awayTeam.logo} width="100%" height="100%"/>
+         </div>
+        <span>{awayTeam.name}</span>
+        </div>
+    </div>
+
+    <div class="match-card-venue">📍 {venue}</div>
+
+    <button class="match-card-btn">
+        Ver Detalles
+    </button>
+</div>
+
+<style>
+    .match-card {
+        min-width: 100%;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 1.5rem;
+        position: relative;
+    }
+
+    .match-card.featured {
+        background: linear-gradient(135deg,  rgba(233, 30, 140, 0.2), rgba(233, 30, 140, 0.05));
+        border: 1px solid rgba(233, 30, 140, 0.3);
+    }
+
+    .match-card-date {
+        text-align: center;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1.25rem;
+    }
+
+    .match-card-teams {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.25rem;
+    }
+
+    .match-team {
+        text-align: center;
+        flex: 1;
+    }
+
+    .match-team-logo {
+        width: 90px;
+        height: 90px;
+        background: var(--blanco);
+        border-radius: 50%;
+        margin: 0 auto 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(233, 30, 140, 0.3);
+    }
+
+    .match-team-logo.MUN { background: linear-gradient(135deg, #c00, #800); color: #fff; }
+    .match-team-logo.COM { background: #fff; color: #000; }
+    .match-team-logo.ANT { background: linear-gradient(135deg, #2d5016, #1a3009); color: #fff; }
+    .match-team-logo.XEL { background: linear-gradient(135deg, #c00, #600); color: #fff; }
+    .match-team-logo.GUA { background: linear-gradient(135deg, #FFD700, #C5A000); color: #000; }
+    .match-team-logo.COB { background: linear-gradient(135deg, #1a237e, #0d1654); color: #fff; }
+    .match-team-logo.MAL { background: linear-gradient(135deg, #1a1a1a, #333); color: #fff; }
+    .match-team-logo.ACH { background: linear-gradient(135deg, #006600, #009900); color: #fff; }
+    .match-team-logo.mar { background: linear-gradient(135deg, #333366, #4444aa); color: #fff; }
+    .match-team-logo.AUR { background: linear-gradient(135deg, #1a237e, #0d47a1); color: #fff; }
+    .match-team-logo.MIX { background: linear-gradient(135deg, #4a148c, #7b1fa2); color: #fff; }
+    .match-team-logo.MIC { background: linear-gradient(135deg, #004d40, #00796b)}
+
+    .match-team span {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--blanco);
+    }
+
+    .match-score {
+        font-family: 'Bebas Neve', sans-serif;
+        font-size: 1.5rem;
+        color: var(--magenta);
+        padding: 0 1rem;
+    }
+
+    .match-card-venue {
+        text-align: center;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 1.25rem;
+    }
+
+    .match-card-btn {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--blanco);
+    }
+
+    .match-card-btn:hover {
+        background: var(--blanco);
+        color: var(--turquesa-profundo);
+    }
+
+    .match-card-btn.primary {
+        background: var(--magenta);
+        border-color: var(--magenta);
+    }
+
+    .match-card-btn.primary:hover {
+        background: var(--blanco);
+        color: var(--magenta);
+    }
+</style>

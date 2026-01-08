@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "Municipal",
+        "shortName": "MUN",
+        "logo": "/images/logos/Municipal.png",
+        "city": "Ciudad de Guatemala",
+        "stadium": "Estadio El Trébol"
+    },
+    {
+        "id": 2,
+        "name": "Comunicaciones",
+        "shortName": "COM",
+        "logo": "/images/logos/Comunicaciones.png",
+        "city": "Ciudad de Guatemala",
+        "stadium": "Estadio Cementos Progreso"
+    },
+    {
+        "id": 3,
+        "name": "Antigua G.F.C.",
+        "shortName": "ANT",
+        "logo": "/images/logos/Antigua.png",
+        "city": "Antigua Guatemala",
+        "stadium": "Estadio Pensativo"
+    },
+    {
+        "id": 4,
+        "name": "Xelajú M.C.",
+        "shortName": "XEL",
+        "logo": "/images/logos/Xelaju.png",
+        "city": "Quetzaltenango",
+        "stadium": "Estadio Mario Camposeco"
+    },
+    {
+        "id": 5,
+        "name": "Guastatoya",
+        "shortName": "GUA",
+        "logo": "/images/logos/Guastatoya.png",
+        "city": "Guastatoya",
+        "stadium": "Estadio David Cordón"
+    },
+    {
+        "id": 6,
+        "name": "Cobán Imperial",
+        "shortName": "COB",
+        "logo": "/images/logos/Coban.png",
+        "city": "Cobán",
+        "stadium": "Estadio Verapaz"
+    },
+    {
+        "id": 7,
+        "name": "Malacateco",
+        "shortName": "MAL",
+        "logo": "/images/logos/Malacateco.png",
+        "city": "Malacatán",
+        "stadium": "Estadio Santa Lucía"
+    },
+    {
+        "id": 8,
+        "name": "Aurora F.C.",
+        "shortName": "AUR",
+        "logo": "/images/logos/Aurora.png",
+        "city": "Ciudad de Guatemala",
+        "stadium": "Estadio Del Ejército"
+    },
+    {
+        "id": 9,
+        "name": "Mixco",
+        "shortName": "MIX",
+        "logo": "/images/logos/Mixco.png",
+        "city": "Mixco",
+        "stadium": "Estadio Santo Domingo"
+    },
+    {
+        "id": 10,
+        "name": "Mictlán",
+        "shortName": "MIC",
+        "logo": "/images/logos/Mictlan.png",
+        "city": "Ciudad de Guatemala",
+        "stadium": "Estadio Del Ejército"
+    },
+    {
+        "id": 11,
+        "name": "Marquense",
+        "shortName": "MAR",
+        "logo": "/images/logos/Marquense.png",
+        "city": "San Marcos",
+        "stadium": "Estadio Marquesa de la Ensenada"
+    },
+    {
+        "id": 12,
+        "name": "Achuapa F.C.",
+        "shortName": "ACH",
+        "logo": "/images/logos/Achuapa.png",
+        "city": "Achuapa",
+        "stadium": "Estadio El Condor"
+    }
+]

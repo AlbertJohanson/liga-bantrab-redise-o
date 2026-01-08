@@ -1,0 +1,205 @@
+---
+interface Team {
+    name: string;
+    shortName: string;
+    logo: string;
+}
+
+interface Props {
+    homeTeam: Team;
+    awayTeam: Team;
+    date: string;
+    time: string;
+    venue: string;
+    venueImage: string;
+}
+
+const {homeTeam, awayTeam, date, time, venue, venueImage} = Astro.props;
+---
+<div class="match-preview-card">
+    <span class="match-preview-date">{date}</span>
+    <div class="match-preview-teams">
+        <div class="match-preview-team">
+            <div class={`match-preview-logo ${homeTeam.shortName}`}>
+                <img src={homeTeam.logo} width="100%" height="100%"/>
+            </div>
+            <span class="match-preview-team-name">{homeTeam.name}</span>
+        </div>
+        <span class="match-preview-vs">VS</span>
+        <div class="match-preview-team">
+             <div class={`match-preview-logo ${awayTeam.shortName}`}>
+                <img src={awayTeam.logo} width="100%" height="100%"/>
+            </div>
+            <span class="match-preview-team-name">{awayTeam.name}</span>
+        </div>
+    </div>
+    <div class="match-preview-venue">
+        <div class="venue-image">
+            <img src={venueImage} alt={venue}>
+        </div>
+        <div class="venue-info">
+            <span class="venue-label">📍 Estadio</span>
+            <div class="venue-name">{venue}</div>
+        </div>
+    </div>
+    <div class="match-pending-badge">
+        <span class="pending-dot"></span>
+        <span class="pending-text">Por jugarse</span>
+    </div>
+</div>
+
+<style>
+    .match-preview-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .match-preview-card:hover {
+            border-color: var(--turquesa);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .match-preview-date {
+            display: inline-block;
+            background: var(--magenta);
+            color: var(--blanco);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .match-preview-teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .match-preview-team {
+            text-align: center;
+            flex: 1;
+        }
+
+        .match-preview-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--blanco);
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            color: var(--turquesa-profundo);
+        }
+
+        .match-preview-team-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--blanco);
+        }
+
+        .match-preview-vs {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            color: var(--magenta);
+            padding: 0 0.75rem;
+        }
+
+        .match-preview-venue {
+            background: rgba(42, 191, 179, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .venue-image {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, var(--turquesa-profundo), var(--turquesa-oscuro));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .venue-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .venue-info {
+            padding: 1rem;
+            border-left: 3px solid var(--turquesa);
+        }
+
+        .venue-label {
+            font-size: 0.7rem;
+            color: var(--turquesa);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .venue-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--blanco);
+            margin-bottom: 0.25rem;
+        }
+
+        .match-pending-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pending-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--turquesa);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .pending-text {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .match-preview-logo.MUN { background: linear-gradient(135deg, #c00, #800); color: #fff; }
+        .match-preview-logo.COM { background: #fff; color: #000; }
+        .match-preview-logo.ANT { background: linear-gradient(135deg, #2d5016, #1a3009); color: #fff; }
+        .match-preview-logo.XEL { background: linear-gradient(135deg, #c00, #600); color: #fff; }
+        .match-preview-logo.GUA { background: linear-gradient(135deg, #FFD700, #C5A000); color: #000; }
+        .match-preview-logo.COB { background: linear-gradient(135deg, #1a237e, #0d1654); color: #fff; }
+        .match-preview-logo.MAL { background: linear-gradient(135deg, #1a1a1a, #333); color: #fff; }
+        .match-preview-logo.ACH { background: linear-gradient(135deg, #006600, #009900); color: #fff; }
+        .match-preview-logo.mar { background: linear-gradient(135deg, #333366, #4444aa); color: #fff; }
+        .match-preview-logo.AUR { background: linear-gradient(135deg, #1a237e, #0d47a1); color: #fff; }
+        .match-preview-logo.MIX { background: linear-gradient(135deg, #4a148c, #7b1fa2); color: #fff; }
+        .match-preview-logo.MIC { background: linear-gradient(135deg, #004d40, #00796b)}
+</style>
