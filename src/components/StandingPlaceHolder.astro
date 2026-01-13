@@ -1,24 +1,66 @@
 ---
-import equipos from '../data/equipos.json'
+import campeones from "../data/champions.json";
 
 interface Props {
-    startDate?: string;
-    tournamentName?: string
+  startDate?: string;
+  tournamentName?: string;
 }
 
 const { startDate, tournamentName } = Astro.props;
-
 ---
 
 <section class="standings-section">
-        <div class="standings-container">
-            <div class="section-header">
-                <span class="section-label">{tournamentName}</span>
-                <h2 class="section-title">TABLA DE POSICIONES</h2>
-            </div>
+  <div class="standings-container">
+    <div class="section-header">
+      <span class="section-label">{tournamentName}</span>
+      <h2 class="section-title">TABLA DE POSICIONES</h2>
+    </div>
 
-            <div class="placeholder-wrapper">
-                <!-- Card principal - Tabla -->
+    <div class="standings-grids">
+      <div class="card champion-card">
+        <span class="champion-badge">👑 CAMPEÓN VIGENTE</span>
+        <div class="champion-logo ANT">
+          <img src="/images/logos/Antigua.png" />
+        </div>
+        <h3 class="champion-name">Antigua GFC</h3>
+        <p class="champion-title-count">🏆 6 Títulos de Liga</p>
+
+        <div class="champion-tournament">
+          <div class="champion-tournament-label">Último título</div>
+          <div class="champion-tournament-name">Apertura 2025</div>
+        </div>
+      </div>
+
+      <div class="card historical-card">
+        <div class="historical-header">
+          <h3 class="historical-title">
+            <span>🏆</span>
+            PALMARÉS HISTÓRICO
+          </h3>
+          <span class="historical-subtitle"
+            >Equipos más ganadores de la Liga</span
+          >
+        </div>
+
+        <div class="champions-list">
+          {
+            campeones.map((campeon, index) => (
+              <div class="champion-row top-2" id={`${campeon.id}`}>
+                <div class="champion-position">{campeon.position}</div>
+                <div class="champion-team">
+                  <div class={`champion-team-logo ${campeon.shortName}`}>
+                    <img src={campeon.logo} />
+                  </div>
+                  <span class="champion-team-name">{campeon.name}</span>
+                </div>
+                <div class="titles-count">{campeon.titles} 🏆</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- <div class="placeholder-wrapper">
                 <div class="placeholder-card">
                     <div class="placeholder-icon">🏆</div>
                     <h3 class="placeholder-title">¡El torneo está por comenzar!</h3>
@@ -44,7 +86,6 @@ const { startDate, tournamentName } = Astro.props;
                     </div>
                 </div>
 
-                <!-- Card secundaria - Goleadores -->
                 <div class="placeholder-card scorers">
                     <div class="placeholder-icon">⚽</div>
                     <h3 class="placeholder-title">Goleadores</h3>
@@ -67,222 +108,660 @@ const { startDate, tournamentName } = Astro.props;
                     </div>
                     <span class="placeholder-soon">Próximamente</span>
                 </div>
-            </div>
-        </div>
-    </section>
+            </div> -->
+    </div>
+  </div>
 
-<style>
+  <style>
     .standings-section {
-        background: var(--gris-claro);
-        padding: 3rem 2rem;
+      background: var(--gris-claro);
+      padding: 3rem 2rem;
     }
 
     .standings-container {
-        max-width: 1200px;
-        margin: 0 auto;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .section-header {
-        text-align: center;
-        margin-bottom: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
     .section-label {
-        font-size: 0.85rem;
-        color: var(--turquesa);
-        font-weight: 600;
-        letter-spacing: 2px;
-        margin-bottom: 0.5rem;
-        display: block;
-        text-transform: uppercase;
+      font-size: 0.85rem;
+      color: var(--turquesa);
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      display: block;
+      text-transform: uppercase;
     }
 
     .section-title {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 3.5rem;
-        letter-spacing: 2px;
-        color: var(--turquesa-profundo);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      color: var(--turquesa-profundo);
     }
 
     .placeholder-wrapper {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
     }
 
     .placeholder-card {
-        background: var(--blanco);
-        border-radius: 24px;
-        padding: 3rem 2rem;
-        text-align: center;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+      background: var(--blanco);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .placeholder-icon {
-        font-size: 5rem;
-        margin-bottom: 1.5rem;
-        animation: bounce 2s ease-in-out infinite;
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      animation: bounce 2s ease-in-out infinite;
     }
 
     @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     .placeholder-title {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 2rem;
-        color: var(--turquesa-profundo);
-        letter-spacing: 1px;
-        margin-bottom: 1rem;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2rem;
+      color: var(--turquesa-profundo);
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
     }
 
     .placeholder-text {
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 1.05rem;
-        line-height: 1.6;
-        max-width: 400px;
-        margin-bottom: 2rem;
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 400px;
+      margin-bottom: 2rem;
     }
 
     .placeholder-text strong {
-        color: var(--turquesa-profundo);
+      color: var(--turquesa-profundo);
     }
 
     .placeholder-date {
-        background: linear-gradient(135deg, var(--turquesa), var(--turquesa-oscuro));
-        padding: 1.25rem 2.5rem;
-        border-radius: 16px;
-        margin-bottom: 2rem;
+      background: linear-gradient(
+        135deg,
+        var(--turquesa),
+        var(--turquesa-oscuro)
+      );
+      padding: 1.25rem 2.5rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
     }
 
     .date-label {
-        display: block;
-        font-size: 0.75rem;
-        color: rgba(255, 255, 255, 0.8);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 0.25rem;
+      display: block;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.25rem;
     }
 
     .date-value {
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 1.6rem;
-        color: var(--blanco);
-        letter-spacing: 1px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.6rem;
+      color: var(--blanco);
+      letter-spacing: 1px;
     }
 
     .placeholder-teams {
-        color: rgba(0, 0, 0, 0.5);
-        font-size: 0.9rem;
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 0.9rem;
     }
 
     .teams-preview {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
-        flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
     }
 
     .team-dot {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
     }
 
     .team-dot:hover {
-        transform: scale(1.2);
+      transform: scale(1.2);
     }
 
-    .team-dot.MUN { background: linear-gradient(135deg, #c00, #800); }
-    .team-dot.COM { background: #fff; border: 2px solid #ddd; }
-    .team-dot.ANT { background: linear-gradient(135deg, #2d5016, #1a3009); }
-    .team-dot.XEL { background: linear-gradient(135deg, #c00, #600); }
-    .team-dot.GUA { background: linear-gradient(135deg, #FFD700, #C5A000); }
-    .team-dot.COB { background: linear-gradient(135deg, #1a237e, #0d1654); }
-    .team-dot.MAL { background: linear-gradient(135deg, #1a1a1a, #333); }
-    .team-dot.AUR { background: linear-gradient(135deg, #1a237e, #0d47a1); }
-    .team-dot.MIX { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
-    .team-dot.MIC { background: linear-gradient(135deg, #004d40, #00796b); }
-    .team-dot.MAR { background: linear-gradient(135deg, #333366, #4444aa); }
-    .team-dot.ACH { background: linear-gradient(135deg, #006600, #009900); }
+    .team-dot.MUN {
+      background: linear-gradient(135deg, #c00, #800);
+    }
+    .team-dot.COM {
+      background: #fff;
+      border: 2px solid #ddd;
+    }
+    .team-dot.ANT {
+      background: linear-gradient(135deg, #2d5016, #1a3009);
+    }
+    .team-dot.XEL {
+      background: linear-gradient(135deg, #c00, #600);
+    }
+    .team-dot.GUA {
+      background: linear-gradient(135deg, #ffd700, #c5a000);
+    }
+    .team-dot.COB {
+      background: linear-gradient(135deg, #1a237e, #0d1654);
+    }
+    .team-dot.MAL {
+      background: linear-gradient(135deg, #1a1a1a, #333);
+    }
+    .team-dot.AUR {
+      background: linear-gradient(135deg, #1a237e, #0d47a1);
+    }
+    .team-dot.MIX {
+      background: linear-gradient(135deg, #4a148c, #7b1fa2);
+    }
+    .team-dot.MIC {
+      background: linear-gradient(135deg, #004d40, #00796b);
+    }
+    .team-dot.MAR {
+      background: linear-gradient(135deg, #333366, #4444aa);
+    }
+    .team-dot.ACH {
+      background: linear-gradient(135deg, #006600, #009900);
+    }
 
     /* Scorers placeholder */
     .placeholder-card.scorers {
-        background: linear-gradient(135deg, var(--turquesa-profundo), var(--turquesa-oscuro));
+      background: linear-gradient(
+        135deg,
+        var(--turquesa-profundo),
+        var(--turquesa-oscuro)
+      );
     }
 
     .placeholder-card.scorers .placeholder-icon {
-        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
     }
 
     .placeholder-card.scorers .placeholder-title {
-        color: var(--blanco);
+      color: var(--blanco);
     }
 
     .placeholder-card.scorers .placeholder-text {
-        color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .placeholder-podium {
-        display: flex;
-        align-items: flex-end;
-        gap: 0.75rem;
-        margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
     }
 
     .podium-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .podium-icon {
-        font-size: 1.8rem;
+      font-size: 1.8rem;
     }
 
     .podium-bar {
-        width: 55px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 8px 8px 0 0;
+      width: 55px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 8px 8px 0 0;
     }
 
     .podium-item.first .podium-bar {
-        height: 90px;
-        background: linear-gradient(180deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+      height: 90px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 215, 0, 0.4),
+        rgba(255, 215, 0, 0.2)
+      );
     }
 
     .podium-item.second .podium-bar {
-        height: 65px;
-        background: linear-gradient(180deg, rgba(192, 192, 192, 0.4), rgba(192, 192, 192, 0.2));
+      height: 65px;
+      background: linear-gradient(
+        180deg,
+        rgba(192, 192, 192, 0.4),
+        rgba(192, 192, 192, 0.2)
+      );
     }
 
     .podium-item.third .podium-bar {
-        height: 45px;
-        background: linear-gradient(180deg, rgba(205, 127, 50, 0.4), rgba(205, 127, 50, 0.2));
+      height: 45px;
+      background: linear-gradient(
+        180deg,
+        rgba(205, 127, 50, 0.4),
+        rgba(205, 127, 50, 0.2)
+      );
     }
 
     .placeholder-soon {
-        color: var(--negro);
-        font-weight: 600;
-        font-size: 0.9rem;
-        background: var(--blanco);
-        padding: 0.6rem 1.75rem;
-        border-radius: 25px;
-        margin-top: 0.5rem;
+      color: var(--negro);
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: var(--blanco);
+      padding: 0.6rem 1.75rem;
+      border-radius: 25px;
+      margin-top: 0.5rem;
+    }
+
+    .standings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .champion-card {
+      background: linear-gradient(
+        135deg,
+        var(--turquesa-profundo) 0%,
+        var(--turquesa-oscuro) 100%
+      );
+      padding: 2.5rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .champion-card::before {
+      content: "🏆";
+      position: absolute;
+      font-size: 15rem;
+      opacity: 0.05;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .champion-badge {
+      display: inline-block;
+      background: var(--dorado);
+      color: var(--negro);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .champion-logo {
+      width: 100px;
+      height: 100px;
+      background: var(--blanco);
+      border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      color: var(--turquesa-profundo);
+      border: 4px solid var(--dorado);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .champion-logo img {
+      width: 100%;
+      height: auto;
+    }
+
+    .champion-logo.ANT {
+      background: linear-gradient(135deg, #2d5016, #1a3009);
+      color: #fff;
+    }
+
+    .champion-name {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2rem;
+      color: var(--blanco);
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .champion-title-count {
+      font-size: 1rem;
+      color: var(--dorado);
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .champion-tournament {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .champion-tournament-label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.25rem;
+    }
+
+    .champion-tournament-name {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.2rem;
+      color: var(--blanco);
+      letter-spacing: 1px;
+    }
+
+    .historical-card {
+      grid-column: span 2;
+    }
+
+    .historical-header {
+      background: var(--negro);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .historical-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.5rem;
+      color: var(--blanco);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .historical-subtitle {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .champions-list {
+      padding: 1rem 0;
+    }
+
+    .champion-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 120px 100px;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: background 0.3s ease;
+    }
+
+    .champion-row:hover {
+      background: rgba(42, 191, 179, 0.05);
+    }
+
+    .champion-row.top-2 {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+    }
+
+    .champion-row.top-2:hover {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 215, 0, 0.15),
+        rgba(42, 191, 179, 0.05)
+      );
+    }
+
+    .champion-position {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.5rem;
+      color: var(--turquesa);
+    }
+
+    .champion-row.top-2 .champion-position {
+      color: var(--dorado);
+    }
+
+    .champion-team {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .champion-team-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--gris-claro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 0.8rem;
+      color: var(--turquesa-profundo);
+    }
+
+    .champion-team-logo img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Municipal - Rojo */
+    .champion-team-logo.MUN {
+      background: linear-gradient(135deg, #cc0000, #800000);
+      color: #fff;
+    }
+    .champion-row.MUN:hover {
+      background: linear-gradient(90deg, rgba(204, 0, 0, 0.08), transparent);
+    }
+
+    /* Comunicaciones - Blanco/Crema */
+    .champion-team-logo.COM {
+      background: #ffffff;
+      color: #000;
+      border: 2px solid #ddd;
+    }
+    .champion-row.COM:hover {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.05), transparent);
+    }
+
+    /* Aurora - Azul */
+    .champion-team-logo.AUR {
+      background: linear-gradient(135deg, #1a237e, #0d47a1);
+      color: #fff;
+    }
+    .champion-row.AUR:hover {
+      background: linear-gradient(90deg, rgba(26, 35, 126, 0.08), transparent);
+    }
+
+    /* Xelajú MC - Rojo */
+    .champion-team-logo.XEL {
+      background: linear-gradient(135deg, #cc0000, #660000);
+      color: #fff;
+    }
+    .champion-row.XEL:hover {
+      background: linear-gradient(90deg, rgba(204, 0, 0, 0.08), transparent);
+    }
+
+    /* Antigua GFC - Verde */
+    .champion-team-logo.ANT {
+      background: linear-gradient(135deg, #2d5016, #1a3009);
+      color: #fff;
+    }
+    .champion-row.ANT:hover {
+      background: linear-gradient(90deg, rgba(45, 80, 22, 0.08), transparent);
+    }
+
+    /* Guastatoya - Amarillo/Dorado */
+    .champion-team-logo.GUA {
+      background: linear-gradient(135deg, #ffd700, #c5a000);
+      color: #000;
+    }
+    .champion-row.GUA:hover {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+    }
+
+    /* Tipografía Nacional - Azul/Blanco */
+    .champion-team-logo.TIP {
+   background: #ffffff;
+      color: #000;
+      border: 2px solid #ddd;
+    }
+    .champion-row.TIP:hover {
+      background: linear-gradient(90deg, rgba(21, 101, 192, 0.08), transparent);
+    }
+
+    /* Suchitepéquez - Celeste/Naranja */
+    .champion-team-logo.SUC {
+      background: linear-gradient(135deg, #00bcd4, #ff9800);
+      color: #fff;
+    }
+    .champion-row.SUC:hover {
+      background: linear-gradient(90deg, rgba(0, 188, 212, 0.08), transparent);
+    }
+
+    /* Cobán Imperial - Azul Marino */
+    .champion-team-logo.COB {
+      background: linear-gradient(135deg, #1a237e, #0d1654);
+      color: #fff;
+    }
+    .champion-row.COB:hover {
+      background: linear-gradient(90deg, rgba(26, 35, 126, 0.08), transparent);
+    }
+
+    /* Malacateco - Negro */
+    .champion-team-logo.MAL {
+      background: linear-gradient(135deg, #1a1a1a, #333333);
+      color: #fff;
+    }
+    .champion-row.MAL:hover {
+      background: linear-gradient(90deg, rgba(26, 26, 26, 0.08), transparent);
+    }
+
+    /* Santa Lucía Cotzumalguapa - Naranja/Negro */
+    .champion-team-logo.SLC {
+      background: linear-gradient(135deg, #ff6600, #cc5200);
+      color: #fff;
+    }
+    .champion-row.SLC:hover {
+      background: linear-gradient(90deg, rgba(255, 102, 0, 0.08), transparent);
+    }
+
+    .champion-team-name {
+      font-weight: 600;
+      color: var(--negro);
+    }
+
+    .champion-titles {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .titles-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--gris-claro);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .titles-fill {
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        var(--turquesa),
+        var(--turquesa-oscuro)
+      );
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .champion-row.top-2 .titles-fill {
+      background: linear-gradient(90deg, var(--dorado), #ffa500);
+    }
+
+    .titles-count {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.5rem;
+      color: var(--turquesa-profundo);
+      min-width: 100%;
+      text-align: right;
+    }
+
+    .champion-row.top-2 .titles-count {
+      color: #b8860b;
+    }
+
+    /* Trophy icons for top positions */
+    .trophy-icon {
+      font-size: 1.2rem;
     }
 
     @media (max-width: 992px) {
-        .placeholder-wrapper {
-            grid-template-columns: 1fr;
-        }
+      .standings-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .historical-card {
+        grid-column: span 1;
+      }
+
+      .champion-row {
+        grid-template-columns: 50px 1fr 100px 80px;
+        padding: 1rem 1.5rem;
+      }
     }
-</style>
+
+    @media (max-width: 600px) {
+      .champion-row {
+        grid-template-columns: 40px 1fr;
+        gap: 0.5rem;
+      }
+
+      .titles-bar {
+        display: none;
+      }
+
+      .historical-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</section>

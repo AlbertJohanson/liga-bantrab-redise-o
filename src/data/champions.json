@@ -1,0 +1,101 @@
+[
+    {
+        "id": 1,
+        "position": 1,
+        "name": "Municipal",
+        "shortName": "MUN",
+        "logo": "/images/logos/Municipal.png",
+        "titles": 32,
+        "lastTitle": "Clausura 2024"
+    },
+    {
+        "id": 2,
+        "position": 1,
+        "name": "Comunicaciones",
+        "shortName": "COM",
+        "logo": "/images/logos/Comunicaciones.png",
+        "titles": 32,
+        "lastTitle": "Apertura 2024"
+    },
+    {
+        "id": 3,
+        "position": 3,
+        "name": "Aurora FC",
+        "shortName": "AUR",
+        "logo": "/images/logos/Aurora.png",
+        "titles": 8,
+        "lastTitle": "1985"
+    },
+    {
+        "id": 4,
+        "position": 4,
+        "name": "Xelajú MC",
+        "shortName": "XEL",
+        "logo": "/images/logos/Xelaju.png",
+        "titles": 7,
+        "lastTitle": "Clausura 2019"
+    },
+    {
+        "id": 5,
+        "position": 5,
+        "name": "Antigua GFC",
+        "shortName": "ANT",
+        "logo": "/images/logos/Antigua.png",
+        "titles": 6,
+        "lastTitle": "Apertura 2025"
+    },
+    {
+        "id": 6,
+        "position": 6,
+        "name": "Guastatoya",
+        "shortName": "GUA",
+        "logo": "/images/logos/Guastatoya.png",
+        "titles": 3,
+        "lastTitle": "Clausura 2020"
+    },
+    {
+        "id": 7,
+        "position": 6,
+        "name": "Tipografía Nacional",
+        "shortName": "TIP",
+        "logo": "/images/logos/Tiprografia_nacional.png",
+        "titles": 3,
+        "lastTitle": "1965"
+    },
+    {
+        "id": 8,
+        "position": 8,
+        "name": "Suchitepéquez",
+        "shortName": "SUC",
+        "logo": "/images/logos/Suchitepequez.png",
+        "titles": 2,
+        "lastTitle": "Clausura 2017"
+    },
+    {
+        "id": 9,
+        "position": 8,
+        "name": "Cobán Imperial",
+        "shortName": "COB",
+        "logo": "/images/logos/Coban.png",
+        "titles": 2,
+        "lastTitle": "Clausura 2022"
+    },
+    {
+        "id": 10,
+        "position": 10,
+        "name": "Malacateco",
+        "shortName": "MAL",
+        "logo": "/images/logos/Malacateco.png",
+        "titles": 1,
+        "lastTitle": "Apertura 2019"
+    },
+    {
+        "id": 11,
+        "position": 10,
+        "name": "Santa Lucía Cotzumalguapa",
+        "shortName": "SLC",
+        "logo": "/images/logos/SantaLucia.png",
+        "titles": 1,
+        "lastTitle": "Apertura 2021"
+    }
+]

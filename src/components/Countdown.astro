@@ -1,0 +1,321 @@
+---
+---
+<section class="countdown-hero">
+<div class="video-background">    
+    <video autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/ajweb/video/upload/v1768335928/Liga-Bantrab/YTDown.com_YouTube_Liga-Bantrab_Media_lcyz_2bqRtg_001_720p_tieeqd.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="video-overlay"></div>
+<div class="pattern-overlay"></div>
+
+<div class="countdown-content">
+    <h1 class="countdown-headline">
+        EL CAMINO A LA GLORIA
+        <span class="highlight">COMIENZA EN</span>
+    </h1>
+
+    <div class="countdown-timer">
+        <div class="countdown-item">
+            <div class="countdown-number" id="days">12</div>
+            <div class="countdown-label">Días</div>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-item">
+            <div class="countdown-number" id="hours">08</div>
+            <div class="countdown-label">Horas</div>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-item">
+            <div class="countdown-number" id="minutes">45</div>
+            <div class="countdown-label">Minutos</div>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-item">
+            <div class="countdown-number" id="seconds">30</div>
+            <div class="countdown-label">Segundos</div>
+        </div>
+    </div>
+
+    <div class="countdown-date">
+        <span class="countdown-date-icon">📅</span>
+        <span class="countdown-date-text">21 de Enero, 2026 • Clausura 2026</span>
+    </div>
+</div>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator">
+    <span>Descubre más</span>
+    <div class="scroll-arrow"></div>
+</div>
+</section>
+
+ <script>
+        // Countdown Timer
+        const targetDate = new Date('2026-01-21T00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.querySelector('.countdown-headline').innerHTML = `
+                    <span class="highlight">¡EL TORNEO</span>
+                    HA COMENZADO
+                `;
+                document.querySelector('.countdown-timer').style.display = 'none';
+                document.querySelector('.countdown-date').innerHTML = `
+                    <span class="countdown-date-icon">⚽</span>
+                    <span class="countdown-date-text">Clausura 2026 • En curso</span>
+                `;
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
+<style>
+    .countdown-hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    /* Video Background */
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .video-background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Overlay oscuro sobre el video */
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 2;
+    }
+
+    /* Patrón sutil */
+    .pattern-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            radial-gradient(circle at 20% 80%, rgba(42, 191, 179, 0.1) 0%, transparent 40%),
+            radial-gradient(circle at 80% 20%, rgba(42, 191, 179, 0.05) 0%, transparent 40%);
+        z-index: 3;
+    }
+
+    /* Contenido del countdown */
+    .countdown-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 2rem;
+        max-width: 1000px;
+    }
+
+    /* Título principal */
+    .countdown-headline {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2rem, 6vw, 4.5rem);
+        color: var(--blanco);
+        letter-spacing: 4px;
+        line-height: 1.1;
+        margin-bottom: 3rem;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .countdown-headline .highlight {
+        display: block;
+        color: var(--turquesa);
+        font-size: clamp(2.5rem, 8vw, 6rem);
+        text-shadow: 0 0 40px rgba(42, 191, 179, 0.5);
+    }
+
+    /* Timer grande */
+    .countdown-timer {
+        display: flex;
+        justify-content: center;
+        gap: clamp(1rem, 3vw, 2.5rem);
+        margin-bottom: 3rem;
+    }
+
+    .countdown-item {
+        text-align: center;
+    }
+
+    .countdown-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(4rem, 12vw, 10rem);
+        color: var(--blanco);
+        line-height: 1;
+        text-shadow: 0 0 50px rgba(42, 191, 179, 0.3);
+        position: relative;
+    }
+
+    .countdown-number::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, var(--turquesa), transparent);
+        border-radius: 2px;
+    }
+
+    .countdown-label {
+        font-size: clamp(0.8rem, 2vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-top: 0.75rem;
+    }
+
+    .countdown-separator {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(3rem, 10vw, 8rem);
+        color: var(--turquesa);
+        line-height: 1;
+        animation: pulse 1s ease-in-out infinite;
+        align-self: flex-start;
+        margin-top: 0.5rem;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+
+    /* Fecha de inicio */
+    .countdown-date {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(42, 191, 179, 0.15);
+        border: 1px solid rgba(42, 191, 179, 0.3);
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+    }
+
+    .countdown-date-icon {
+        font-size: 1.5rem;
+    }
+
+    .countdown-date-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        color: var(--blanco);
+        letter-spacing: 2px;
+    }
+
+    /* Logo de la liga (opcional) */
+    .countdown-logo {
+        position: absolute;
+        top: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+    }
+
+    .countdown-logo img {
+        height: 60px;
+        width: auto;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .scroll-arrow {
+        width: 24px;
+        height: 24px;
+        border-right: 2px solid rgba(255, 255, 255, 0.5);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        transform: rotate(45deg);
+        animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+        0%, 100% { transform: rotate(45deg) translateY(0); }
+        50% { transform: rotate(45deg) translateY(10px); }
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+        .countdown-timer {
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .countdown-item {
+            flex: 0 0 calc(50% - 1rem);
+        }
+
+        .countdown-separator {
+            display: none;
+        }
+
+        .countdown-headline {
+            margin-bottom: 2rem;
+        }
+
+        .countdown-date {
+            padding: 0.75rem 1.5rem;
+        }
+    }
+</style>

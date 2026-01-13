@@ -4,9 +4,11 @@ import HeroSection from '../components/HeroSection.astro';
 import StandingPlaceHolder from '../components/StandingPlaceHolder.astro';
 import ResultsPlaceHolder from '../components/ResultsPlaceHolder.astro';
 import Teams from '../components/Teams.astro';
+import Countdown from '../components/Countdown.astro';
 ---
 
 <MainLayout title="Inicio">
+    <Countdown />
     <HeroSection />
     <StandingPlaceHolder startDate='21 de Enero del 2026' tournamentName='Torneo Clausura 2026'/>
     <ResultsPlaceHolder />
